@@ -1,0 +1,48 @@
+(virenv) PS D:\AgenticAI Projects> & "d:\AgenticAI Projects\virenv\Scripts\python.exe" "d:/AgenticAI Projects/ReasearchAgent_files/app.py"
+╭──────────────────────────────────────── 🤖 Agent Started ─────────────────────────────────────────╮
+│                                                                                                   │
+│  Agent: URL_Collector                                                                             │
+│                                                                                                   │
+│  Task: collect a top 5 urls based on the topic of Generative AI                                   │
+│                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+Tool tavily_search executed with result: {
+  "query": "top generative ai websites",
+  "follow_up_questions": null,
+  "answer": null,
+  "images": [],
+  "results": [
+    {
+      "url": "https://bootcamp.cpe.vt.edu/blog/best-generative-ai-tools...
+[Finalize] todos_count=0, todos_with_results=0
+╭────────────────────────────────────── ✅ Agent Final Answer ──────────────────────────────────────╮
+│                                                                                                   │
+│  Agent: URL_Collector                                                                             │
+│                                                                                                   │
+│  Final Answer:                                                                                    │
+│  Based on the tool output, here are the top 5 URLs related to Generative AI:                      │
+│                                                                                                   │
+│  1. https://bootcamp.cpe.vt.edu/blog/best-generative-ai-tools                                     │
+│  2. https://aimagazine.com/news/top-10-generative-ai-tools                                        │
+│  3. https://zapier.com/blog/generative-ai-tools                                                   │
+│  4. https://a16z.com/100-gen-ai-apps-6                                                            │
+│  5. https://www.lindy.ai/blog/ai-platforms                                                        │
+│                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+
+
+╭──────────────────────────────────────── Execution Traces ─────────────────────────────────────────╮
+│                                                                                                   │
+│  🔍 Detailed execution traces are available!                                                      │
+│                                                                                                   │
+│  View insights including:                                                                         │
+│    • Agent decision-making process                                                                │
+│    • Task execution flow and timing                                                               │
+│    • Tool usage details                                                                           │
+│                                                                                                   │
+│  These traces are stored locally and may contain prompts, inputs, and outputs. Sharing uploads    │
+│  them to CrewAI.                                                                                  │
+│                                                                                                   │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────╯
