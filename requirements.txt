@@ -1,0 +1,14 @@
+crewai
+crewai-tools
+langchain
+langgraph
+streamlit
+fastapi
+uvicorn[standard]
+requests
+ollama
+langchain-community
+azure-core
+azure-identity
+pydantic
+tavily-python
