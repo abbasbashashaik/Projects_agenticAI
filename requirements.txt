@@ -12,3 +12,4 @@ azure-core
 azure-identity
 pydantic
 tavily-python
+pypdf
