@@ -1,0 +1,63 @@
+**Structured Report**
+
+**Candidate Profile**
+Shaik Abbas Basha
+Packaged Application Development Associate
+
+**Profile Summary**
+The candidate's profile highlights a detail-oriented individual with 2 years of experience in Power BI and business intelligence, specializing in data analysis, dashboard development, and data visualization. With PL-300 certification and hands-on experience in Power BI, Microsoft Fabric, and data integration, the candidate possesses strong analytical skills and the ability to identify trends and support data-driven decision-making.
+
+**Experience**
+The candidate's experience includes 3-4 months of training in Oracle SQL/PLSQL and APEX, and 4 months of learning Power BI with personal projects. Their experience has also included:
+
+* Engineered a Multi-Layer Medallion Data Pipeline (Bronze → Silver → Gold) using PySpark, transforming unstructured/raw data into cleansed, aggregated, and analytics-ready enterprise tables.
+* Architected a Centralized Semantic Model on top of Gold layer data to enforce star-schema relationships, standardized business logic, and unified DAX measures as a single source of truth (SSOT).
+* Enabled Enterprise-Wide Scalability by connecting downstream Power BI reports and dashboards to the centralized semantic model, reducing data redundancy and optimizing report performance.
+
+**Technical Skills**
+The candidate's technical skills include:
+
+* Data Analysis & Querying: SQL (Joins, Subqueries, CTEs, Aggregate Functions), Query Optimization, Data Cleaning & Validation, Data Extraction & Transformation
+* Business Intelligence & Visualization: Power BI, Data Modeling, DAX, Power Query (Data Transformation), Interactive Dashboard Development, KPI Reporting, Report Publishing, DataFlows
+* Database Technologies: Oracle SQL, PL/SQL
+* Tools & Productivity: Power BI, Azure Microsoft Fabric, Excel
+* Programming: Python, PySpark
+
+**Projects and Participations**
+The candidate has worked on two projects:
+
+* Project 1: Enterprise Superstore Analytics & Reporting Platform
+* Project 2: PySpark Data Pipeline & Semantic Modeling Platform
+
+**Certification**
+The candidate has the following certifications:
+
+* Microsoft Certified: PL-300 Power BI Data Analyst Associate
+* DP-600 Microsoft Fabric Certification
+* DataBricks Data Engineer Associate Certification
+
+**Education**
+The candidate has completed their B. Tech in Computer Science and Engineering with a 8.4 GPA.
+Annamacharya Institute of Technology and Sciences, Rajampet
+
+**Matches to the Job Description**
+
+**Matches:**
+1. 1-3 years of hands-on experience in Data Analytics or Product Analytics (Matched)
+2. Strong hands-on experience with SQL and the ability to perform data transformations using Python (Matched)
+3. Experience working with large datasets, writing efficient and optimized SQL queries (Matched)
+4. Strong sense of ownership with high autonomy, accountability, and active cross-team collaboration (Matched)
+
+**Missing Skills:**
+1. Experience with data visualization tools (preferably Looker) (Missing)
+2. Building data science models (Missing)
+3. Experience with dbt models (Missing)
+
+**Recommendation:**
+Based on the analysis, the candidate has a strong foundation in data analysis, SQL, and Power BI. However, they lack experience with data visualization tools, building data science models, and dbt models. Given the job description's emphasis on these skills, we recommend that the candidate:
+
+1. Develop their skills in data visualization tools, building data science models, and dbt models to better complement their existing skills.
+2. Gain more experience in product analytics to ensure they can understand the business side of the role.
+3. Consider taking courses or attending workshops to improve their knowledge in these areas.
+
+Overall, the candidate has a solid start, but with some additional skills and experience, they can be a strong fit for this role.
