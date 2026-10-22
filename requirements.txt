@@ -12,3 +12,6 @@ azure-core
 azure-identity
 pydantic
 tavily-python
+psycopg2-binary
+psycopg[binary]
+pypdf

@@ -1,0 +1,152 @@
+
+tailorflow-ai/
+│
+├── frontend/                         # Streamlit application
+│   ├── app.py                        # Main entry point
+│   ├── config.py                     # Frontend configuration
+│   ├── components/
+│   │   ├── sidebar.py
+│   │   ├── navbar.py
+│   │   ├── metric_cards.py
+│   │   └── order_table.py
+│   ├── pages/
+│   │   ├── login.py
+│   │   ├── register.py
+│   │   ├── dashboard.py
+│   │   ├── orders.py
+│   │   ├── customers.py
+│   │   ├── measurements.py
+│   │   ├── inventory.py
+│   │   ├── calendar.py
+│   │   ├── alterations.py
+│   │   ├── reports.py
+│   │   └── ai_assistant.py
+│   └── services/
+│       ├── api_client.py             # HTTPX API calls
+│       └── auth_client.py            # Login/register API calls
+│
+├── backend/                          # FastAPI application
+│   ├── app/
+│   │   ├── main.py                   # FastAPI entry point
+│   │   ├── config.py                 # Environment configuration
+│   │   ├── dependencies.py            # Shared API dependencies
+│   │   │
+│   │   ├── api/
+│   │   │   ├── router.py             # Register all API routers
+│   │   │   └── v1/
+│   │   │       ├── auth.py
+│   │   │       ├── users.py
+│   │   │       ├── customers.py
+│   │   │       ├── orders.py
+│   │   │       ├── measurements.py
+│   │   │       ├── inventory.py
+│   │   │       ├── alterations.py
+│   │   │       ├── appointments.py
+│   │   │       ├── reports.py
+│   │   │       └── assistant.py
+│   │   │
+│   │   ├── core/
+│   │   │   ├── security.py           # Password hashing and JWT
+│   │   │   ├── permissions.py        # Authorization rules
+│   │   │   ├── exceptions.py
+│   │   │   └── logging.py
+│   │   │
+│   │   ├── db/
+│   │   │   ├── session.py            # SQLAlchemy sessions
+│   │   │   ├── base.py
+│   │   │   └── init_db.py
+│   │   │
+│   │   ├── models/                   # SQLAlchemy ORM models
+│   │   │   ├── user.py
+│   │   │   ├── customer.py
+│   │   │   ├── order.py
+│   │   │   ├── measurement.py
+│   │   │   ├── inventory.py
+│   │   │   ├── material_usage.py
+│   │   │   ├── alteration.py
+│   │   │   ├── appointment.py
+│   │   │   ├── document.py
+│   │   │   └── audit_log.py
+│   │   │
+│   │   ├── schemas/                  # Pydantic request/response schemas
+│   │   │   ├── auth.py
+│   │   │   ├── customer.py
+│   │   │   ├── order.py
+│   │   │   ├── measurement.py
+│   │   │   ├── inventory.py
+│   │   │   ├── alteration.py
+│   │   │   └── assistant.py
+│   │   │
+│   │   ├── services/                 # Business logic
+│   │   │   ├── auth_service.py
+│   │   │   ├── customer_service.py
+│   │   │   ├── order_service.py
+│   │   │   ├── measurement_service.py
+│   │   │   ├── inventory_service.py
+│   │   │   ├── alteration_service.py
+│   │   │   └── notification_service.py
+│   │   │
+│   │   ├── repositories/             # Database access layer
+│   │   │   ├── customer_repository.py
+│   │   │   ├── order_repository.py
+│   │   │   ├── inventory_repository.py
+│   │   │   └── measurement_repository.py
+│   │   │
+│   │   ├── agents/                   # Agentic AI implementation
+│   │   │   ├── graph.py              # Main LangGraph workflow
+│   │   │   ├── state.py              # Agent state definition
+│   │   │   ├── nodes.py              # Planning and analysis nodes
+│   │   │   ├── routing.py            # Conditional routing
+│   │   │   ├── prompts.py            # System prompts
+│   │   │   ├── memory.py             # Conversation persistence
+│   │   │   ├── tools/
+│   │   │   │   ├── order_tools.py
+│   │   │   │   ├── inventory_tools.py
+│   │   │   │   ├── customer_tools.py
+│   │   │   │   ├── measurement_tools.py
+│   │   │   │   ├── scheduling_tools.py
+│   │   │   │   └── reporting_tools.py
+│   │   │   └── guardrails/
+│   │   │       ├── input_guard.py
+│   │   │       ├── output_guard.py
+│   │   │       ├── pii_guard.py
+│   │   │       └── tool_guard.py
+│   │   │
+│   │   ├── rag/                      # Retrieval-augmented generation
+│   │   │   ├── loaders.py            # PDF and text loaders
+│   │   │   ├── chunking.py
+│   │   │   ├── embeddings.py
+│   │   │   ├── vector_store.py       # PostgreSQL + pgvector
+│   │   │   ├── retriever.py
+│   │   │   └── pipeline.py
+│   │   │
+│   │   └── integrations/
+│   │       ├── ollama_client.py      # Local LLM connection
+│   │       └── http_client.py        # Shared HTTPX client
+│   │
+│   └── tests/
+│       ├── test_auth.py
+│       ├── test_orders.py
+│       ├── test_inventory.py
+│       ├── test_agent_tools.py
+│       ├── test_guardrails.py
+│       └── test_rag.py
+│
+├── data/
+│   ├── knowledge_base/               # Manuals, policies, guides
+│   ├── sample_data/                  # Fake customers and orders
+│   └── uploads/                      # Local development uploads only
+│
+├── scripts/
+│   ├── seed_database.py
+│   └── ingest_documents.py
+│
+├── migrations/                       # Alembic database migrations
+├── .env.example
+├── .gitignore
+├── alembic.ini
+├── docker-compose.yml
+├── Dockerfile
+├── requirements.txt
+├── README.md
+└── pyproject.toml
