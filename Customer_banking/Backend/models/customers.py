@@ -16,9 +16,9 @@ from models.user import User
 
 class Customer(Base):
     __tablename__ = "customers"
-
-    customer_id: Mapped[int] = mapped_column(
-        Integer, primary_key=True, autoincrement=True
+    
+    customer_id: Mapped[str] = mapped_column(
+        String(10), primary_key=True
     )
 
     user_id: Mapped[int] = mapped_column(

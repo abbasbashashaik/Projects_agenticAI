@@ -13,8 +13,8 @@ from db.connection import Base
 class Account(Base):
     __tablename__ = "accounts"
 
-    account_id: Mapped[int] = mapped_column(
-        primary_key=True, autoincrement=True
+    account_id: Mapped[str] = mapped_column(
+       String(10), primary_key=True
     )
     customer_id: Mapped[int] = mapped_column(
         ForeignKey("customers.customer_id"), nullable=False

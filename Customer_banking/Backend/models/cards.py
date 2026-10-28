@@ -12,8 +12,8 @@ from db.connection import Base
 class Card(Base):
     __tablename__ = "cards"
 
-    card_id: Mapped[int] = mapped_column(
-        primary_key=True, autoincrement=True
+    card_id: Mapped[str] = mapped_column(
+        String(10), primary_key=True
     )
     account_id: Mapped[int] = mapped_column(
         ForeignKey("accounts.account_id"), nullable=False
