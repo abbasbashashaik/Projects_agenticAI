@@ -18,3 +18,4 @@ def mask_banking_pii(
         "account_number": mask_value(account_number),
         "card_number": mask_value(card_number)
     }
+

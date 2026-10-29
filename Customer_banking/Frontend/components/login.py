@@ -1,33 +1,68 @@
+
 import streamlit as st
 import httpx
 
-api = "http://127.0.0.1:8000/auth"
+API_URL = "http://127.0.0.1:8000"
+
+
+def get_api_client():
+    if (
+        "api_client" not in st.session_state
+        or st.session_state.api_client is None
+    ):
+        st.session_state.api_client = httpx.Client(
+            base_url=API_URL,
+            timeout=30.0,
+        )
+
+    return st.session_state.api_client
+
+
+
 
 def login():
     st.title("User Authentication Portal")
-    with st.form(key="login_form",clear_on_submit=False):    
-        username = st.text_input("enter username...")
-        # Added type="password" to hide characters while typing
-        password = st.text_input("enter password...", type="password") 
-        submit_button=st.form_submit_button("Login")
-    
-    if submit_button:
-        data = {"email_or_username": username, "password": password}
-        
+
+    with st.form("login_form"):
+        username = st.text_input("Username or email")
+        password = st.text_input("Password", type="password")
+        submitted = st.form_submit_button("Login")
+
+    if submitted:
+        client = get_api_client()
+
         try:
-            response = httpx.post(f"{api}/login", json=data)
-            
-            # Check if the server responded with a successful status (200 OK)
+            response = client.post(
+                "/auth/login",
+                json={
+                    "email_or_username": username,
+                    "password": password,
+                },
+            )
+
             if response.status_code == 200:
-                st.session_state.logged_in=True
                 result = response.json()
-                d=result["user"]
-                st.write(result["message"],"logged username",d["username"])
+
+                st.session_state.logged_in = True
+                st.session_state.current_user = (
+                    result["user"]["username"]
+                )
+
+                st.success("Login successful!")
+
+                # Temporary diagnostic; do not print the cookie itself.
+                st.write(
+                    "Session cookie saved:",
+                    "banking_session" in client.cookies,
+                )
+
                 st.rerun()
+
             else:
-                # Displays the raw error message if the URL or method is wrong
-                st.error(f"Backend returned error code: {response.status_code}")
-                st.text(response.text)
-                
-        except httpx.ConnectError:
-            st.error("Cannot connect to FastAPI. Please verify that your backend server is running.")
+                st.error(
+                    f"Login failed ({response.status_code}): "
+                    f"{response.text}"
+                )
+
+        except httpx.RequestError as exc:
+            st.error(f"Could not connect to FastAPI: {exc}")

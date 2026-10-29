@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI,Request
 from pydantic import BaseModel,EmailStr
 from db.connection import get_db,Session
 from datetime import datetime
@@ -59,34 +59,60 @@ def register_user(user_data: UserCreate, db: Session = Depends(get_db)):
 
 
 # --- LOGIN ENDPOINT ---
+
 @router.post("/login")
-def authenticate_user(login_data: UserLogin, db: Session = Depends(get_db)):
-  # 1. Find the user by email or username
-  user = (
-      db.query(User)
-      .filter(
-          (User.email == login_data.email_or_username)
-          | (User.username == login_data.email_or_username)
-      )
-      .first()
-  )
-
-  # 2. Check if user exists
-  if not user:
-    raise HTTPException(
-        status_code=status.HTTP_401_UNAUTHORIZED,
-        detail="Invalid credentials (user not found)",
+def authenticate_user(
+    request: Request,
+    login_data: UserLogin,
+    db: Session = Depends(get_db),
+):
+    user = (
+        db.query(User)
+        .filter(
+            (User.email == login_data.email_or_username)
+            | (User.username == login_data.email_or_username)
+        )
+        .first()
     )
 
-  # 3. Direct string comparison for password
-  if user.password != login_data.password:
-    raise HTTPException(
-        status_code=status.HTTP_401_UNAUTHORIZED,
-        detail="Invalid credentials (incorrect password)",
-    )
+    if not user or user.password != login_data.password:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid username/email or password",
+        )
 
-  # 4. Authentication successful
-  return {
-      "message": "Login successful",
-      "user": {"id": user.id, "username": user.username, "email": user.email},
-  }
+    request.session.clear()
+    request.session["user_id"] = user.id
+
+    return {
+        "message": "Login successful",
+        "user": {
+            "id": user.id,
+            "username": user.username,
+            "email": user.email,
+        },
+    }
+
+
+def get_current_user(
+    request: Request,
+    db: Session = Depends(get_db),
+) -> User:
+    user_id = request.session.get("user_id")
+
+    if user_id is None:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Please log in first",
+        )
+
+    user = db.get(User, user_id)
+
+    if user is None:
+        request.session.clear()
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid session",
+        )
+
+    return user

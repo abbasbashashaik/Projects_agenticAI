@@ -1,16 +1,32 @@
 from langchain_ollama import ChatOllama
-from agent.tools_def.customer_tool import get_balance
+#from agent.tools_def.customer_tool import get_balance
 from langgraph.prebuilt import create_react_agent
+from agent.ai.banking_tools import build_banking_tools
+from langchain.agents import create_agent
 
-def ask_llm(query:str):
-    tools = [get_balance]
+def ask_llm(query:str,db,authenticated_user_id:int):
+    tools = build_banking_tools(
+        db=db,
+        authenticated_user_id=authenticated_user_id,
+    )
+
 
     # 2. Initialize the Ollama model
     llm = ChatOllama(model="llama3.2", temperature=0)
 
     # 3. Bind the tools directly to the model
     # This creates a new model instance that is explicitly aware of your functions
-    agent_executor = create_react_agent(llm,tools)
+    agent_executor=create_agent(
+        model=llm,
+        tools=tools,
+        system_prompt=(
+            "You are a banking assistant. "
+            "Use tools to answer banking questions. "
+            "Never access another user's data. "
+            "Never claim a contact update succeeded "
+            "without backend confirmation."
+        ),
+    )
 
     # 4. Invoke the model directly
     # The model will output a ToolCall instead of a normal text response if it needs data
